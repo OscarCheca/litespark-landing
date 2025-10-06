@@ -4,8 +4,10 @@ export default function Home() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    // Más adelante conectaremos con tu backend
-    setData("<p>Bienvenido a Litespark Landing!</p>");
+    fetch("http://20.81.154.141:80/") // mi backend Express
+      .then(res => res.text()) // o res.json() si la backend devuelve JSON
+      .then(html => setData(html))
+      .catch(err => console.error(err));
   }, []);
 
   return (
@@ -15,4 +17,5 @@ export default function Home() {
     </div>
   );
 }
+
 
